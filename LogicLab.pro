@@ -14,7 +14,9 @@ SOURCES += \
     componentmime.cpp \
     components/andgate.cpp \
     components/button.cpp \
+    components/clock.cpp \
     components/orgate.cpp \
+    components/xorgate.cpp \
     core/component.cpp \
     core/componentitem.cpp \
     core/inputpin.cpp \
@@ -32,7 +34,9 @@ HEADERS += \
     componentmime.hpp \
     components/andgate.hpp \
     components/button.hpp \
+    components/clock.hpp \
     components/orgate.hpp \
+    components/xorgate.hpp \
     core/component.hpp \
     core/componentitem.hpp \
     core/inputpin.hpp \

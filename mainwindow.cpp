@@ -8,6 +8,8 @@
 #include "components/andgate.hpp"
 #include "components/orgate.hpp"
 #include "components/button.hpp"
+#include "components/xorgate.hpp"
+#include "components/clock.hpp"
 
 #include <QDragEnterEvent>
 #include <QGraphicsItem>
@@ -305,8 +307,14 @@ void MainWindow::loadPlugins()
     Component *orGate = new OrGate(this);
     m_ui->treeWidget->addComponent(orGate);
 
+    Component *xorGate = new XorGate(this);
+    m_ui->treeWidget->addComponent(xorGate);
+
     Component *button = new Button(this);
     m_ui->treeWidget->addComponent(button);
+
+    Component *clock = new Clock(this);
+    m_ui->treeWidget->addComponent(clock);
 }
 
 
