@@ -43,12 +43,12 @@ OrGate::OrGate(QObject *parent) :
 
 QString OrGate::category() const
 {
-    return "Logic gates";
+    return "LOGIC GATES";
 }
 
 QString OrGate::name() const
 {
-    return "OR gate";
+    return "OR GATE";
 }
 
 ComponentItem *OrGate::item()

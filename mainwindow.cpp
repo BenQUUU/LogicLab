@@ -10,6 +10,14 @@
 #include "components/button.hpp"
 #include "components/xorgate.hpp"
 #include "components/clock.hpp"
+#include "components/nandgate.hpp"
+#include "components/notgate.hpp"
+#include "components/norgate.hpp"
+#include "components/xnorgate.hpp"
+#include "components/switch.hpp"
+#include "components/led.hpp"
+#include "components/srflipflop.hpp"
+#include "components/digit.hpp"
 
 #include <QDragEnterEvent>
 #include <QGraphicsItem>
@@ -136,7 +144,7 @@ bool MainWindow::save()
 
 void MainWindow::about()
 {
-     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicFlow v" + QString::fromUtf8(APP_VERSION) + "</b><br>Copyright &copy; Michał Kolczak");
+     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicFlow v" + QString::fromUtf8(APP_VERSION) + "</b><br>Made by Michał Kolczak");
 }
 
 void MainWindow::zoomIn()
@@ -253,7 +261,7 @@ void MainWindow::setCurrentFile(const QString &fileName)
     setWindowModified(false);
 
     const QString shownName = (fileName.isEmpty()) ? "untitled.txt" : fileName;
-    setWindowTitle(shownName + "[*] - Framework");
+    setWindowTitle(shownName + "[*]");
 
     m_fileName = fileName;
 }
@@ -304,17 +312,41 @@ void MainWindow::loadPlugins()
     Component *andGate = new AndGate(this);
     m_ui->treeWidget->addComponent(andGate);
 
+    Component *nandGate = new NandGate(this);
+    m_ui->treeWidget->addComponent(nandGate);
+
     Component *orGate = new OrGate(this);
     m_ui->treeWidget->addComponent(orGate);
 
+    Component *norGate = new NorGate(this);
+    m_ui->treeWidget->addComponent(norGate);
+
     Component *xorGate = new XorGate(this);
     m_ui->treeWidget->addComponent(xorGate);
+
+    Component *xnorGate = new XnorGate(this);
+    m_ui->treeWidget->addComponent(xnorGate);
+
+    Component *notGate = new NotGate(this);
+    m_ui->treeWidget->addComponent(notGate);
+
+    Component *srFlipFlop = new SRFlipFlop(this);
+    m_ui->treeWidget->addComponent(srFlipFlop);
 
     Component *button = new Button(this);
     m_ui->treeWidget->addComponent(button);
 
     Component *clock = new Clock(this);
     m_ui->treeWidget->addComponent(clock);
+
+    Component *switchComponent = new Switch(this);
+    m_ui->treeWidget->addComponent(switchComponent);
+
+    Component *led = new LED(this);
+    m_ui->treeWidget->addComponent(led);
+
+    Component *digit = new Digit(this);
+    m_ui->treeWidget->addComponent(digit);
 }
 
 

@@ -122,12 +122,12 @@ Clock::Clock(QObject* parent) :
 
 QString Clock::category() const
 {
-    return "Inputs";
+    return "INPUTS";
 }
 
 QString Clock::name() const
 {
-    return "Clock";
+    return "CLOCK";
 }
 
 ComponentItem* Clock::item()

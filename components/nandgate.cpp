@@ -1,11 +1,9 @@
-#include "andgate.hpp"
+#include "nandgate.hpp"
 
-#include "../core/outputpin.hpp"
 #include "../core/inputpin.hpp"
+#include "../core/outputpin.hpp"
 
-#include <QPen>
-
-AndGateItem::AndGateItem(Component *component) :
+NandGateItem::NandGateItem(Component *component) :
     ComponentItem(component)
 {
     QPainterPath path;
@@ -14,13 +12,15 @@ AndGateItem::AndGateItem(Component *component) :
     path.arcTo(20, 0, 30, 30, -90, 180);
     path.closeSubpath();
 
+    path.addEllipse(50, 12.5, 5, 5);
+
     path.moveTo(5, 5);
     path.lineTo(20, 5);
 
     path.moveTo(5, 25);
     path.lineTo(20, 25);
 
-    path.moveTo(50, 15);
+    path.moveTo(55, 15);
     path.lineTo(65, 15);
 
     setPath(path);
@@ -33,27 +33,27 @@ AndGateItem::AndGateItem(Component *component) :
     updateOutputs();
 }
 
-void AndGateItem::updateOutputs()
+void NandGateItem::updateOutputs()
 {
-    _outputs[0]->setValue(_inputs[0]->value() & _inputs[1]->value());
+    _outputs[0]->setValue(!(_inputs[0]->value() & _inputs[1]->value()));
 }
 
-AndGate::AndGate(QObject *parent) :
+NandGate::NandGate(QObject* parent) :
     Component(parent)
 {
 }
 
-QString AndGate::category() const
+QString NandGate::category() const
 {
     return "LOGIC GATES";
 }
 
-QString AndGate::name() const
+QString NandGate::name() const
 {
-    return "AND GATE";
+    return "NAND GATE";
 }
 
-ComponentItem *AndGate::item()
+ComponentItem* NandGate::item()
 {
-    return new AndGateItem(this);
+    return new NandGateItem(this);
 }

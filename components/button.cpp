@@ -27,7 +27,7 @@ void ButtonItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     painter->setPen(Qt::NoPen);
     painter->setBrush(gradient);
-    painter->drawEllipse(QPoint(25, 25), 20, 20);
+    painter->drawEllipse(QPoint(25, 25), 12, 12);
 
     if(m_mouseDown) {
         gradient.setColorAt(0, QColor(140, 200, 10));
@@ -40,12 +40,12 @@ void ButtonItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     }
 
     painter->setBrush(gradient);
-    painter->drawEllipse(QPoint(25, 25), 17, 17);
+    painter->drawEllipse(QPoint(25, 25), 12, 12);
 }
 
 void ButtonItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    const QRectF button(5, 5, 40, 40);
+    const QRectF button(5, 5, 30, 30);
     if(button.contains(event->pos())) {
         m_mouseDown = true;
         _outputs[0]->setValue(true);
@@ -74,12 +74,12 @@ Button::Button(QObject *parent) :
 
 QString Button::category() const
 {
-    return "Inputs";
+    return "INPUTS";
 }
 
 QString Button::name() const
 {
-    return "Button";
+    return "BUTTON";
 }
 
 ComponentItem *Button::item()

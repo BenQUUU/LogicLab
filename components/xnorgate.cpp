@@ -1,9 +1,9 @@
-#include "xorgate.hpp"
+#include "xnorgate.hpp"
 
 #include "../core/inputpin.hpp"
 #include "../core/outputpin.hpp"
 
-XorGateItem::XorGateItem(Component* component) :
+XnorGateItem::XnorGateItem(Component *component) :
     ComponentItem(component)
 {
     QPainterPath path;
@@ -16,13 +16,15 @@ XorGateItem::XorGateItem(Component* component) :
     path.quadTo(25, 15, 15, 29);
     path.quadTo(25, 15, 15, 1);
 
+    path.addEllipse(50, 12.5, 5, 5);
+
     path.moveTo(5, 5);
     path.lineTo(23, 5);
 
     path.moveTo(5, 25);
     path.lineTo(23, 25);
 
-    path.moveTo(50, 15);
+    path.moveTo(55, 15);
     path.lineTo(65, 15);
 
     setPath(path);
@@ -35,27 +37,27 @@ XorGateItem::XorGateItem(Component* component) :
     updateOutputs();
 }
 
-void XorGateItem::updateOutputs()
+void XnorGateItem::updateOutputs()
 {
-    _outputs[0]->setValue(_inputs[0]->value() ^ _inputs[1]->value());
+    _outputs[0]->setValue(!(_inputs[0]->value() ^ _inputs[1]->value()));
 }
 
-XorGate::XorGate(QObject *parent) :
+XnorGate::XnorGate(QObject *parent) :
     Component(parent)
 {
 }
 
-QString XorGate::category() const
+QString XnorGate::category() const
 {
     return "LOGIC GATES";
 }
 
-QString XorGate::name() const
+QString XnorGate::name() const
 {
-    return "XOR GATE";
+    return "XNOR GATE";
 }
 
-ComponentItem *XorGate::item()
+ComponentItem *XnorGate::item()
 {
-    return new XorGateItem(this);
+    return new XnorGateItem(this);
 }

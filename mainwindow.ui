@@ -90,8 +90,9 @@
    </widget>
    <widget class="QMenu" name="aboutMenu">
     <property name="title">
-     <string>&amp;About</string>
+     <string>Help</string>
     </property>
+    <addaction name="docAction"/>
     <addaction name="aboutFrameworkAction"/>
    </widget>
    <widget class="QMenu" name="viewMenu">
@@ -286,9 +287,6 @@
    <property name="toolTip">
     <string>About</string>
    </property>
-   <property name="shortcut">
-    <string>F1</string>
-   </property>
   </action>
   <action name="exitAction">
    <property name="icon">
@@ -395,6 +393,23 @@
    </property>
    <property name="text">
     <string>&amp;Properties...</string>
+   </property>
+  </action>
+  <action name="docAction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpFaq"/>
+   </property>
+   <property name="text">
+    <string>Documetation</string>
+   </property>
+   <property name="toolTip">
+    <string>Documetation</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
  </widget>

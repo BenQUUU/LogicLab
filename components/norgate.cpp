@@ -1,9 +1,9 @@
-#include "xorgate.hpp"
+#include "norgate.hpp"
 
 #include "../core/inputpin.hpp"
 #include "../core/outputpin.hpp"
 
-XorGateItem::XorGateItem(Component* component) :
+NorGateItem::NorGateItem(Component *component) :
     ComponentItem(component)
 {
     QPainterPath path;
@@ -12,9 +12,7 @@ XorGateItem::XorGateItem(Component* component) :
     path.quadTo(45, 30, 50, 15);
     path.quadTo(45, 0, 20, 0);
 
-    path.moveTo(15, 1);
-    path.quadTo(25, 15, 15, 29);
-    path.quadTo(25, 15, 15, 1);
+    path.addEllipse(50, 12.5, 5, 5);
 
     path.moveTo(5, 5);
     path.lineTo(23, 5);
@@ -22,7 +20,7 @@ XorGateItem::XorGateItem(Component* component) :
     path.moveTo(5, 25);
     path.lineTo(23, 25);
 
-    path.moveTo(50, 15);
+    path.moveTo(55, 15);
     path.lineTo(65, 15);
 
     setPath(path);
@@ -35,27 +33,27 @@ XorGateItem::XorGateItem(Component* component) :
     updateOutputs();
 }
 
-void XorGateItem::updateOutputs()
+void NorGateItem::updateOutputs()
 {
-    _outputs[0]->setValue(_inputs[0]->value() ^ _inputs[1]->value());
+    _outputs[0]->setValue(!(_inputs[0]->value() | _inputs[1]->value()));
 }
 
-XorGate::XorGate(QObject *parent) :
+NorGate::NorGate(QObject *parent) :
     Component(parent)
 {
 }
 
-QString XorGate::category() const
+QString NorGate::category() const
 {
     return "LOGIC GATES";
 }
 
-QString XorGate::name() const
+QString NorGate::name() const
 {
-    return "XOR GATE";
+    return "NOR GATE";
 }
 
-ComponentItem *XorGate::item()
+ComponentItem *NorGate::item()
 {
-    return new XorGateItem(this);
+    return new NorGateItem(this);
 }
