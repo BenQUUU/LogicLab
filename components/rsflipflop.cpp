@@ -1,11 +1,11 @@
-#include "srflipflop.hpp"
+#include "rsflipflop.hpp"
 
 #include "../core/outputpin.hpp"
 #include "../core/inputpin.hpp"
 
 #include <QPen>
 
-SRFlipFlopItem::SRFlipFlopItem(Component *component) :
+RSFlipFlopItem::RSFlipFlopItem(Component *component) :
     ComponentItem(component)
 {
     QPainterPath path;
@@ -29,11 +29,11 @@ SRFlipFlopItem::SRFlipFlopItem(Component *component) :
 
     setPath(path);
 
-    QGraphicsTextItem *setLabel = new QGraphicsTextItem("S", this);
+    QGraphicsTextItem *setLabel = new QGraphicsTextItem("R", this);
     setLabel->setPos(1, 3);
     setLabel->setDefaultTextColor(Qt::black);
 
-    QGraphicsTextItem *resetLabel = new QGraphicsTextItem("R", this);
+    QGraphicsTextItem *resetLabel = new QGraphicsTextItem("S", this);
     resetLabel->setPos(1, 22);
     resetLabel->setDefaultTextColor(Qt::black);
 
@@ -45,51 +45,55 @@ SRFlipFlopItem::SRFlipFlopItem(Component *component) :
     notQLabel->setPos(45, 22);
     notQLabel->setDefaultTextColor(Qt::black);
 
+    // Dodanie pinów
     _inputs << new InputPin(this, -20, 10, 270);  // Set (S)
     _inputs << new InputPin(this, -20, 30, 270);  // Reset (R)
 
+    // Dodanie wyjść Q i ¬Q
     _outputs << new OutputPin(this, 80, 10, 90);  // Q
     _outputs << new OutputPin(this, 80, 30, 90);  // ¬Q
 
     updateOutputs();
 }
 
-void SRFlipFlopItem::updateOutputs()
+void RSFlipFlopItem::updateOutputs()
 {
-    bool S = _inputs[0]->value();
-    bool R = _inputs[1]->value();
+    bool R = _inputs[0]->value();
+    bool S = _inputs[1]->value();
 
-    if (S == true && R == false) {
+
+    if (!R && S) {
         _Q = true;
         _notQ = false;
-    } else if (S == false && R == true) {
+    } else if (R && !S) {
         _Q = false;
         _notQ = true;
-    } else if (S == true && R == true) {
-        _Q = true;
-        _notQ = false;
+    } else if (R && S) {
+        _Q = false;
+        _notQ = true;
     } else {}
+
 
     _outputs[0]->setValue(_Q);
     _outputs[1]->setValue(_notQ);
 }
 
-SRFlipFlop::SRFlipFlop(QObject *parent) :
+RSFlipFlop::RSFlipFlop(QObject *parent) :
     Component(parent)
 {
 }
 
-QString SRFlipFlop::category() const
+QString RSFlipFlop::category() const
 {
     return "FLIP FLOPS";
 }
 
-QString SRFlipFlop::name() const
+QString RSFlipFlop::name() const
 {
-    return "SR Flip-Flop";
+    return "RS Flip-Flop";
 }
 
-ComponentItem *SRFlipFlop::item()
+ComponentItem *RSFlipFlop::item()
 {
-    return new SRFlipFlopItem(this);
+    return new RSFlipFlopItem(this);
 }

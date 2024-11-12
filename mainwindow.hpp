@@ -15,7 +15,7 @@ class QUndoStack;
 class QSlider;
 class Scene;
 
-static constexpr const char* APP_VERSION = "0.1";
+static constexpr const char* APP_VERSION = "0.2";
 
 class MainWindow : public QMainWindow
 {

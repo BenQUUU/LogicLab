@@ -17,7 +17,14 @@
 #include "components/switch.hpp"
 #include "components/led.hpp"
 #include "components/srflipflop.hpp"
+#include "components/rsflipflop.hpp"
+#include "components/dflipflop.hpp"
+#include "components/tflipflop.hpp"
+#include "components/jkflipflop.hpp"
 #include "components/digit.hpp"
+#include "components/oscilloscope.hpp"
+#include "components/multiplexer.hpp"
+#include "components/demultiplexer.hpp"
 
 #include <QDragEnterEvent>
 #include <QGraphicsItem>
@@ -144,7 +151,7 @@ bool MainWindow::save()
 
 void MainWindow::about()
 {
-     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicFlow v" + QString::fromUtf8(APP_VERSION) + "</b><br>Made by Michał Kolczak");
+     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicLab v" + QString::fromUtf8(APP_VERSION) + "</b><br>Made by Michał Kolczak");
 }
 
 void MainWindow::zoomIn()
@@ -193,7 +200,7 @@ void MainWindow::loadFile(const QString &fileName)
 {
     QFile file(fileName);
     if(!file.open(QFile::ReadOnly)) {
-        QMessageBox::warning(this, tr("Framework"), tr("Cannot read file %1:\n%2.").arg(fileName).arg(file.errorString()));
+        QMessageBox::warning(this, tr("LogicLab"), tr("Cannot read file %1:\n%2.").arg(fileName).arg(file.errorString()));
         return;
     }
 
@@ -223,7 +230,7 @@ bool MainWindow::saveFile(const QString &fileName)
 {
     QFile file(fileName);
     if(!file.open(QFile::WriteOnly)) {
-        QMessageBox::warning(this, tr("Framework"), tr("Cannot write file %1:\n%2.").arg(fileName).arg(file.errorString()));
+        QMessageBox::warning(this, tr("LogicLab"), tr("Cannot write file %1:\n%2.").arg(fileName).arg(file.errorString()));
         return false;
     }
 
@@ -245,7 +252,7 @@ bool MainWindow::saveFile(const QString &fileName)
 bool MainWindow::maybeSave()
 {
     if(m_scene->isModified()) {
-        const QMessageBox::StandardButton button = QMessageBox::warning(this, tr("Framework"), tr("The document has been modified.\nDo you want to save your changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        const QMessageBox::StandardButton button = QMessageBox::warning(this, tr("LogicLab"), tr("The document has been modified.\nDo you want to save your changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
         if(button == QMessageBox::Save) {
             return save();
         } else if (button == QMessageBox::Cancel) {
@@ -333,6 +340,18 @@ void MainWindow::loadPlugins()
     Component *srFlipFlop = new SRFlipFlop(this);
     m_ui->treeWidget->addComponent(srFlipFlop);
 
+    Component *rsFlipFlop = new RSFlipFlop(this);
+    m_ui->treeWidget->addComponent(rsFlipFlop);
+
+    Component *dFlipFlop = new DFlipFlop(this);
+    m_ui->treeWidget->addComponent(dFlipFlop);
+
+    Component *tFlipFlop = new TFlipFlop(this);
+    m_ui->treeWidget->addComponent(tFlipFlop);
+
+    Component *jkFlipFlop = new JKFlipFlop(this);
+    m_ui->treeWidget->addComponent(jkFlipFlop);
+
     Component *button = new Button(this);
     m_ui->treeWidget->addComponent(button);
 
@@ -347,6 +366,15 @@ void MainWindow::loadPlugins()
 
     Component *digit = new Digit(this);
     m_ui->treeWidget->addComponent(digit);
+
+    Component *oscilloscope = new Oscilloscope(this);
+    m_ui->treeWidget->addComponent(oscilloscope);
+
+    Component *multiplexer = new Multiplexer(this);
+    m_ui->treeWidget->addComponent(multiplexer);
+
+    Component *demultiplexer = new Demultiplexer(this);
+    m_ui->treeWidget->addComponent(demultiplexer);
 }
 
 

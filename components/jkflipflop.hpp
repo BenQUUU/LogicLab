@@ -1,16 +1,15 @@
 #pragma once
 
 #include "../core/component.hpp"
-
 #include <QGraphicsPathItem>
 #include <QPen>
 
-class SRFlipFlopItem : public ComponentItem
+class JKFlipFlopItem : public ComponentItem
 {
     Q_OBJECT
 
 public:
-    SRFlipFlopItem(Component *component);
+    JKFlipFlopItem(Component *component);
 
 public slots:
     void updateOutputs();
@@ -20,12 +19,12 @@ private:
     bool _notQ {true};
 };
 
-class SRFlipFlop : public Component
+class JKFlipFlop : public Component
 {
     Q_OBJECT
 
 public:
-    SRFlipFlop(QObject *parent = 0);
+    JKFlipFlop(QObject *parent = 0);
 
     QString category() const;
     QString name() const;

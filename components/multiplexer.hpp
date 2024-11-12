@@ -1,31 +1,30 @@
 #pragma once
 
 #include "../core/component.hpp"
-
 #include <QGraphicsPathItem>
 #include <QPen>
 
-class SRFlipFlopItem : public ComponentItem
+class MultiplexerItem : public ComponentItem
 {
     Q_OBJECT
 
 public:
-    SRFlipFlopItem(Component *component);
+    MultiplexerItem(Component *component);
 
 public slots:
     void updateOutputs();
 
 private:
-    bool _Q {false};
-    bool _notQ {true};
+    bool _output {false};
+    bool _enabled {true};
 };
 
-class SRFlipFlop : public Component
+class Multiplexer : public Component
 {
     Q_OBJECT
 
 public:
-    SRFlipFlop(QObject *parent = 0);
+    Multiplexer(QObject *parent = 0);
 
     QString category() const;
     QString name() const;

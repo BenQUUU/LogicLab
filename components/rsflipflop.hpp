@@ -5,12 +5,12 @@
 #include <QGraphicsPathItem>
 #include <QPen>
 
-class SRFlipFlopItem : public ComponentItem
+class RSFlipFlopItem : public ComponentItem
 {
     Q_OBJECT
 
 public:
-    SRFlipFlopItem(Component *component);
+    RSFlipFlopItem(Component *component);
 
 public slots:
     void updateOutputs();
@@ -20,12 +20,12 @@ private:
     bool _notQ {true};
 };
 
-class SRFlipFlop : public Component
+class RSFlipFlop : public Component
 {
     Q_OBJECT
 
 public:
-    SRFlipFlop(QObject *parent = 0);
+    RSFlipFlop(QObject *parent = 0);
 
     QString category() const;
     QString name() const;
