@@ -86,7 +86,7 @@ QString SRFlipFlop::category() const
 
 QString SRFlipFlop::name() const
 {
-    return "SR Flip-Flop";
+    return "SR FLIP-FLOP";
 }
 
 ComponentItem *SRFlipFlop::item()

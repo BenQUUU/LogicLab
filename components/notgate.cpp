@@ -14,7 +14,7 @@ NotGateItem::NotGateItem(Component *component) :
     path.lineTo(50, 15);
     path.lineTo(20, 0);
 
-    path.addEllipse(50, 12.5, 5, 5);
+    path.addEllipse(50, 12.5, 6, 6);
 
     path.moveTo(5, 15);
     path.lineTo(20, 15);

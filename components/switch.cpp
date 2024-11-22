@@ -52,7 +52,7 @@ void SwitchItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     painter->setPen(Qt::NoPen);
     painter->setBrush((_outputs[0]->getValue() == true) ? QColor(130, 180, 10) : QColor(35, 40, 50));
-    painter->drawRoundedRect(QRect(5, 15, 40, 20), 12, 12);
+    painter->drawRect(QRect(5, 15, 40, 20));
 
     QLinearGradient bgGradient(0, 15, 0, 35);
     bgGradient.setColorAt(0, Qt::white);

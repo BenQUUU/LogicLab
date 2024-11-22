@@ -18,11 +18,15 @@ SOURCES += \
     components/andgate.cpp \
     components/button.cpp \
     components/clock.cpp \
+    components/comparator.cpp \
     components/demultiplexer.cpp \
     components/dflipflop.cpp \
     components/digit.cpp \
+    components/fulladder.cpp \
     components/jkflipflop.cpp \
     components/led.cpp \
+    components/logicalhigh.cpp \
+    components/logicallow.cpp \
     components/multiplexer.cpp \
     components/nandgate.cpp \
     components/norgate.cpp \
@@ -53,11 +57,15 @@ HEADERS += \
     components/andgate.hpp \
     components/button.hpp \
     components/clock.hpp \
+    components/comparator.hpp \
     components/demultiplexer.hpp \
     components/dflipflop.hpp \
     components/digit.hpp \
+    components/fulladder.hpp \
     components/jkflipflop.hpp \
     components/led.hpp \
+    components/logicalhigh.hpp \
+    components/logicallow.hpp \
     components/multiplexer.hpp \
     components/nandgate.hpp \
     components/norgate.hpp \

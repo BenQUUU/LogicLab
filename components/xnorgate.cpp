@@ -16,7 +16,7 @@ XnorGateItem::XnorGateItem(Component *component) :
     path.quadTo(25, 15, 15, 29);
     path.quadTo(25, 15, 15, 1);
 
-    path.addEllipse(50, 12.5, 5, 5);
+    path.addEllipse(50, 12.5, 6, 6);
 
     path.moveTo(5, 5);
     path.lineTo(23, 5);

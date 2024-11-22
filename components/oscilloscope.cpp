@@ -10,13 +10,13 @@ OscilloscopeItem::OscilloscopeItem(Component* component) :
     timeCounter(0)
 {
     QPainterPath path;
-    path.addRect(0, 0, 50, 50);
+    path.addRect(0, 0, 100, 50);
     path.moveTo(0, 25);
     path.lineTo(-20, 25);
     setPath(path);
 
-    QGraphicsTextItem *Label = new QGraphicsTextItem("OSC", this);
-    Label->setPos(10, 15);
+    QGraphicsTextItem *Label = new QGraphicsTextItem("Oscilloscope", this);
+    Label->setPos(10, 12);
     Label->setDefaultTextColor(Qt::black);
 
     _inputs << new InputPin(this, -20, 20, 90);
@@ -70,7 +70,7 @@ QString Oscilloscope::category() const
 
 QString Oscilloscope::name() const
 {
-    return "Oscilloscope";
+    return "WAVEFORM";
 }
 
 ComponentItem* Oscilloscope::item()

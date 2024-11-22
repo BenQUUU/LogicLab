@@ -92,7 +92,7 @@ QString JKFlipFlop::category() const
 
 QString JKFlipFlop::name() const
 {
-    return "JK Flip-Flop";
+    return "JK FLIP-FLOP";
 }
 
 ComponentItem *JKFlipFlop::item()

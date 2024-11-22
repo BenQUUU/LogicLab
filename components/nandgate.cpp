@@ -12,7 +12,7 @@ NandGateItem::NandGateItem(Component *component) :
     path.arcTo(20, 0, 30, 30, -90, 180);
     path.closeSubpath();
 
-    path.addEllipse(50, 12.5, 5, 5);
+    path.addEllipse(50, 12.5, 6, 6);
 
     path.moveTo(5, 5);
     path.lineTo(20, 5);

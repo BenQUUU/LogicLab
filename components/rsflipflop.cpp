@@ -90,7 +90,7 @@ QString RSFlipFlop::category() const
 
 QString RSFlipFlop::name() const
 {
-    return "RS Flip-Flop";
+    return "RS FLIP-FLOP";
 }
 
 ComponentItem *RSFlipFlop::item()

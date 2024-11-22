@@ -2,14 +2,12 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <QMap>
 
 namespace Ui
 {
 class MainWindow;
 }
 
-class ComponentPlugin;
 class QSignalMapper;
 class QUndoStack;
 class QSlider;
@@ -33,6 +31,7 @@ private slots:
     void newFile();
     void open();
     bool save();
+    bool saveAs();
     void about();
     void zoomIn();
     void zoomOut();
@@ -46,15 +45,13 @@ private:
     void setCurrentFile(const QString &fileName = QString());
     void createZoom();
     void connectActions();
-    void loadPlugins();
+    void loadComponents();
 
 private:
-    Ui::MainWindow *m_ui;
-    Scene *m_scene;
-    QSlider *m_zoomSlider;
-    QSignalMapper *m_mruMapper;
-    QString m_fileName;
-    QMap<QString, ComponentPlugin*> m_plugins;
-
+    Ui::MainWindow *_ui;
+    Scene *_scene;
+    QSlider *_zoomSlider;
+    QSignalMapper *_mruMapper;
+    QString _fileName;
 };
 #endif // MAINWINDOW_HPP

@@ -50,7 +50,7 @@ MultiplexerItem::MultiplexerItem(Component *component) : ComponentItem(component
     s1Label->setDefaultTextColor(Qt::black);
 
     QGraphicsTextItem *enLabel = new QGraphicsTextItem("EN", this);
-    enLabel->setPos(25, 0.5);
+    enLabel->setPos(25, 0.2);
     enLabel->setDefaultTextColor(Qt::black);
 
     QGraphicsTextItem *qLabel = new QGraphicsTextItem("Q", this);
@@ -110,7 +110,7 @@ QString Multiplexer::category() const
 
 QString Multiplexer::name() const
 {
-    return "Multiplexer";
+    return "MULTIPLEXER";
 }
 
 ComponentItem *Multiplexer::item()

@@ -73,7 +73,7 @@ QString TFlipFlop::category() const
 
 QString TFlipFlop::name() const
 {
-    return "T Flip-Flop";
+    return "T FLIP-FLOP";
 }
 
 ComponentItem *TFlipFlop::item()

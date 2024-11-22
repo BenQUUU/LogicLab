@@ -12,7 +12,7 @@ NorGateItem::NorGateItem(Component *component) :
     path.quadTo(45, 30, 50, 15);
     path.quadTo(45, 0, 20, 0);
 
-    path.addEllipse(50, 12.5, 5, 5);
+    path.addEllipse(50, 12.5, 6, 6);
 
     path.moveTo(5, 5);
     path.lineTo(23, 5);

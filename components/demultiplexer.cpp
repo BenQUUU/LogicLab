@@ -37,7 +37,7 @@ DemultiplexerItem::DemultiplexerItem(Component *component) : ComponentItem(compo
     constexpr int positions[] = { 10, 30, 50, 70 }; // Y positions for text items
     for (int i = 0; i < labels.size(); ++i) {
         QGraphicsTextItem *label = new QGraphicsTextItem(labels[i], this);
-        label->setPos(50, positions[i]);
+        label->setPos(46, positions[i]);
         label->setDefaultTextColor(Qt::black);
     }
 
@@ -50,7 +50,7 @@ DemultiplexerItem::DemultiplexerItem(Component *component) : ComponentItem(compo
     s1Label->setDefaultTextColor(Qt::black);
 
     QGraphicsTextItem *enLabel = new QGraphicsTextItem("EN", this);
-    enLabel->setPos(25, 0.5);
+    enLabel->setPos(25, 0.2);
     enLabel->setDefaultTextColor(Qt::black);
 
     QGraphicsTextItem *qLabel = new QGraphicsTextItem("D", this);
@@ -105,7 +105,7 @@ QString Demultiplexer::category() const
 
 QString Demultiplexer::name() const
 {
-    return "Demultiplexer";
+    return "DEMULTIPLEXER";
 }
 
 ComponentItem *Demultiplexer::item()

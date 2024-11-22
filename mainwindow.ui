@@ -77,12 +77,13 @@
    </property>
    <widget class="QMenu" name="fileMenu">
     <property name="title">
-     <string>&amp;File</string>
+     <string>File</string>
     </property>
     <addaction name="newAction"/>
     <addaction name="openAction"/>
     <addaction name="separator"/>
     <addaction name="saveAction"/>
+    <addaction name="saveAsAction"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -93,11 +94,11 @@
      <string>Help</string>
     </property>
     <addaction name="docAction"/>
-    <addaction name="aboutFrameworkAction"/>
+    <addaction name="aboutAction"/>
    </widget>
    <widget class="QMenu" name="viewMenu">
     <property name="title">
-     <string>&amp;View</string>
+     <string>View</string>
     </property>
     <addaction name="zoomInAction"/>
     <addaction name="zoomOutAction"/>
@@ -106,7 +107,7 @@
    </widget>
    <widget class="QMenu" name="editMenu">
     <property name="title">
-     <string>&amp;Edit</string>
+     <string>Edit</string>
     </property>
     <addaction name="undoAction"/>
     <addaction name="redoAction"/>
@@ -120,7 +121,7 @@
    </widget>
    <widget class="QMenu" name="elementMenu">
     <property name="title">
-     <string>E&amp;lement</string>
+     <string>Component</string>
     </property>
     <widget class="QMenu" name="rotateMenu">
      <property name="title">
@@ -179,8 +180,8 @@
    <addaction name="undoAction"/>
    <addaction name="redoAction"/>
    <addaction name="separator"/>
-   <addaction name="cutAction"/>
    <addaction name="copyAction"/>
+   <addaction name="cutAction"/>
    <addaction name="pasteAction"/>
    <addaction name="separator"/>
    <addaction name="deleteAction"/>
@@ -203,6 +204,9 @@
    </attribute>
    <addaction name="rotateClockwiseAction"/>
    <addaction name="rotateAnticlockwiseAction"/>
+   <addaction name="separator"/>
+   <addaction name="zoomOutAction"/>
+   <addaction name="zoomInAction"/>
   </widget>
   <action name="newAction">
    <property name="icon">
@@ -210,7 +214,7 @@
      <normaloff>:/glyphs/page_white.png</normaloff>:/glyphs/page_white.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;New</string>
+    <string>New</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -222,7 +226,7 @@
      <normaloff>:/glyphs/folder.png</normaloff>:/glyphs/folder.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Open...</string>
+    <string>Open</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -234,7 +238,7 @@
      <normaloff>:/glyphs/disk.png</normaloff>:/glyphs/disk.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save</string>
+    <string>Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -246,7 +250,7 @@
      <normaloff>:/glyphs/cross.png</normaloff>:/glyphs/cross.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Delete</string>
+    <string>Delete</string>
    </property>
    <property name="shortcut">
     <string>Del</string>
@@ -261,7 +265,7 @@
     <string>Zoom in</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl++</string>
+    <string>Ctrl+=</string>
    </property>
   </action>
   <action name="zoomOutAction">
@@ -276,7 +280,7 @@
     <string>Ctrl+-</string>
    </property>
   </action>
-  <action name="aboutFrameworkAction">
+  <action name="aboutAction">
    <property name="icon">
     <iconset theme="QIcon::ThemeIcon::HelpAbout">
      <normaloff>:/glyphs/information.png</normaloff>:/glyphs/information.png</iconset>
@@ -294,7 +298,7 @@
      <normaloff>:/glyphs/door.png</normaloff>:/glyphs/door.png</iconset>
    </property>
    <property name="text">
-    <string>E&amp;xit</string>
+    <string>Exit</string>
    </property>
    <property name="toolTip">
     <string>Exit</string>
@@ -309,7 +313,7 @@
      <normaloff>:/glyphs/copy.png</normaloff>:/glyphs/copy.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Copy</string>
+    <string>Copy</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -321,7 +325,7 @@
      <normaloff>:/glyphs/paste_plain.png</normaloff>:/glyphs/paste_plain.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Paste</string>
+    <string>Paste</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
@@ -333,7 +337,7 @@
      <normaloff>:/glyphs/cut.png</normaloff>:/glyphs/cut.png</iconset>
    </property>
    <property name="text">
-    <string>Cu&amp;t</string>
+    <string>Cut</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
@@ -345,7 +349,7 @@
      <normaloff>:/glyphs/arrow_undo.png</normaloff>:/glyphs/arrow_undo.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Undo</string>
+    <string>Undo</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
@@ -357,7 +361,7 @@
      <normaloff>:/glyphs/arrow_redo.png</normaloff>:/glyphs/arrow_redo.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Redo</string>
+    <string>Redo</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>
@@ -392,7 +396,7 @@
     <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
    </property>
    <property name="text">
-    <string>&amp;Properties...</string>
+    <string>Properties...</string>
    </property>
   </action>
   <action name="docAction">
@@ -407,6 +411,23 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="saveAsAction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentSaveAs"/>
+   </property>
+   <property name="text">
+    <string>Save as</string>
+   </property>
+   <property name="toolTip">
+    <string>Save as</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::TextHeuristicRole</enum>
@@ -507,7 +528,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>aboutFrameworkAction</sender>
+   <sender>aboutAction</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>about()</slot>
@@ -535,6 +556,22 @@
     <hint type="destinationlabel">
      <x>330</x>
      <y>184</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveAsAction</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>359</y>
     </hint>
    </hints>
   </connection>

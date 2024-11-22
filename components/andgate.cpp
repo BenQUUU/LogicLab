@@ -9,19 +9,19 @@ AndGateItem::AndGateItem(Component *component) :
     ComponentItem(component)
 {
     QPainterPath path;
-    path.moveTo(20, 0);
-    path.lineTo(20, 30);
-    path.arcTo(20, 0, 30, 30, -90, 180);
+    path.moveTo(20.0, 0.0);
+    path.lineTo(20.0, 30.0);
+    path.arcTo(20.0, 0.0, 30.0, 30.0, -90.0, 180.0);
     path.closeSubpath();
 
-    path.moveTo(5, 5);
-    path.lineTo(20, 5);
+    path.moveTo(5.0, 5.0);
+    path.lineTo(20.0, 5.0);
 
-    path.moveTo(5, 25);
-    path.lineTo(20, 25);
+    path.moveTo(5.0, 25.0);
+    path.lineTo(20.0, 25.0);
 
-    path.moveTo(50, 15);
-    path.lineTo(65, 15);
+    path.moveTo(50.0, 15.0);
+    path.lineTo(65.0, 15.0);
 
     setPath(path);
 
