@@ -35,7 +35,7 @@ AndGateItem::AndGateItem(Component *component) :
 
 void AndGateItem::updateOutputs()
 {
-    _outputs[0]->setValue(_inputs[0]->value() & _inputs[1]->value());
+    _outputs[0]->setValue(_inputs[0]->value() && _inputs[1]->value());
 }
 
 AndGate::AndGate(QObject *parent) :

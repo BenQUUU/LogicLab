@@ -35,7 +35,7 @@ NorGateItem::NorGateItem(Component *component) :
 
 void NorGateItem::updateOutputs()
 {
-    _outputs[0]->setValue(!(_inputs[0]->value() | _inputs[1]->value()));
+    _outputs[0]->setValue(!(_inputs[0]->value() || _inputs[1]->value()));
 }
 
 NorGate::NorGate(QObject *parent) :
