@@ -20,11 +20,9 @@ void LEDItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
     painter->setPen(Qt::NoPen);
 
-    if(_inputs[0]->value()) {
-        // Ustawienie jednolitego czerwonego koloru, gdy wejście wynosi 1
+    if (_inputs[0]->value()) {
         painter->setBrush(Qt::red);
     } else {
-        // Ustawienie koloru białego, gdy wejście wynosi 0
         QLinearGradient gradient(0, 5, 0, 45);
         gradient.setSpread(QGradient::RepeatSpread);
         gradient.setColorAt(0, Qt::white);

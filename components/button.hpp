@@ -16,7 +16,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-    bool m_mouseDown;
+    bool _mouseDown;
 };
 
 class Button : public Component

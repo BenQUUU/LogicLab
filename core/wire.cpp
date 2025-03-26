@@ -42,10 +42,7 @@ Wire::Wire(const QPointF &start, const QPointF &end) :
 
 Wire::~Wire()
 {
-    if(!_input && !_output)
-    {
-        return;
-    }
+    if (!_input && !_output) return;
 
     _input->setWire(0);
     _output->removeWire(this);
@@ -63,25 +60,16 @@ QRectF Wire::boundingRect() const
 
 bool Wire::getValue() const
 {
-    if(!_output)
-    {
-        return false;
-    }
+    if (!_output) return false;
 
     return _output->getValue();
 }
 
 QPointF Wire::startPos() const
 {
-    if(_startPoint != QPointF(-1.0, -1.0))
-    {
-        return _startPoint;
-    }
+    if (_startPoint != QPointF(-1.0, -1.0)) return _startPoint;
 
-    if(_input)
-    {
-        return _input->scenePos() + _input->boundingRect().center();
-    }
+    if (_input) return _input->scenePos() + _input->boundingRect().center();
 
     return QPointF(-1.0, -1.0);
 }
@@ -94,15 +82,9 @@ void Wire::setStartPos(const QPointF &start)
 
 QPointF Wire::endPos() const
 {
-    if(_endPoint != QPointF(-1.0, -1.0))
-    {
-        return _endPoint;
-    }
+    if (_endPoint != QPointF(-1.0, -1.0)) return _endPoint;
 
-    if(_output)
-    {
-        return _output->scenePos() + _output->boundingRect().center();
-    }
+    if (_output) return _output->scenePos() + _output->boundingRect().center();
 
     return QPointF(-1.0, -1.0);
 }
@@ -130,39 +112,32 @@ void Wire::updatePath()
     QPointF start = startPos();
     QPointF end = endPos();
 
-    // Upewniamy się, że przewód zaczyna się na niższym poziomie Y
-    if (start.y() > end.y()) {
-        qSwap(start, end);
-    }
+    if (start.y() > end.y()) qSwap(start, end);
 
     QPainterPath path;
     path.moveTo(start);
 
-    // Dodajemy punkty pośrednie dla prostopadłego prowadzenia przewodu
-    // Punkty będą zależne od tego, czy przewód idzie bardziej w pionie czy w poziomie
     if (qAbs(start.x() - end.x()) > qAbs(start.y() - end.y())) {
-        // Większy dystans w poziomie, więc robimy zakręt w pionie po środku
         QPointF middlePoint((start.x() + end.x()) / 2, start.y());
         path.lineTo(middlePoint);
         middlePoint.setY(end.y());
         path.lineTo(middlePoint);
     } else {
-        // Większy dystans w pionie, więc robimy zakręt w poziomie po środku
         QPointF middlePoint(start.x(), (start.y() + end.y()) / 2);
         path.lineTo(middlePoint);
         middlePoint.setX(end.x());
         path.lineTo(middlePoint);
     }
 
-    path.lineTo(end); // końcowy odcinek do końca przewodu
+    path.lineTo(end);
 
     setPath(path);
 }
 
 QVariant Wire::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
 {
-    if(change ==  QGraphicsItem::ItemSelectedChange) {
-        if(value.toBool()) {
+    if (change ==  QGraphicsItem::ItemSelectedChange) {
+        if (value.toBool()) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
             effect->setOffset(0, 0);
             effect->setColor(QColor(130, 180, 10));

@@ -26,7 +26,7 @@ public:
 
     int gridSize() const;
 
-    bool isModified() const { return m_modified; }
+    bool isModified() const { return _modified; }
 
     bool canUndo() const;
     bool canRedo() const;
@@ -58,8 +58,8 @@ protected:
     void dragMoveEvent(QGraphicsSceneDragDropEvent *event);
 
 private:
-    Wire *m_wire;
-    QUndoStack *m_undoStack;
-    bool m_modified;
+    Wire *_wire;
+    QUndoStack *_undoStack;
+    bool _modified;
 };
 

@@ -7,12 +7,10 @@
 
 QColor PinItem::colorForValue(bool value)
 {
-    if(value)
-    {
+    if(value) {
         return QColor(Qt::green);
     }
-    else
-    {
+    else {
         return QColor(Qt::white);
     }
 }

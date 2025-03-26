@@ -3,64 +3,58 @@
 #include "core/componentitem.hpp"
 
 AddCommand::AddCommand(Scene *scene, ComponentItem *item) :
-    m_scene(scene),
-    m_item(item)
-{
-}
+    _scene(scene),
+    _item(item)
+{ }
 
 void AddCommand::undo()
 {
-    m_scene->removeItem(m_item);
+    _scene->removeItem(_item);
 }
 
 void AddCommand::redo()
 {
-    m_scene->addItem(m_item);
+    _scene->addItem(_item);
 }
 
 DeleteCommand::DeleteCommand(Scene *scene, const QList<ComponentItem *> &items) :
-    m_scene(scene),
-    m_items(items)
-{
-
-}
+    _scene(scene),
+    _items(items)
+{ }
 
 void DeleteCommand::undo()
 {
-    foreach(ComponentItem *item, m_items) {
-        m_scene->addItem(item);
+    foreach (ComponentItem *item, _items) {
+        _scene->addItem(item);
     }
 }
 
 void DeleteCommand::redo()
 {
-    foreach(ComponentItem *item, m_items) {
-        m_scene->removeItem(item);
+    foreach (ComponentItem *item, _items) {
+        _scene->removeItem(item);
     }
 }
 
 RotateCommand::RotateCommand(const QList<ComponentItem*> &items, const double &angle) :
-    m_items(items),
-    m_angle(angle)
-{
-}
+    _items(items),
+    _angle(angle)
+{ }
 
 void RotateCommand::undo()
 {
-    foreach(ComponentItem *item, m_items) {
-        if(!item)
-            continue;
+    foreach (ComponentItem *item, _items) {
+        if(!item) continue;
 
-        item->setRotation(item->rotation() - m_angle);
+        item->setRotation(item->rotation() - _angle);
     }
 }
 
 void RotateCommand::redo()
 {
-    foreach(ComponentItem *item, m_items) {
-        if(!item)
-            continue;
+    foreach (ComponentItem *item, _items) {
+        if(!item) continue;
 
-        item->setRotation(item->rotation() + m_angle);
+        item->setRotation(item->rotation() + _angle);
     }
 }

@@ -31,11 +31,9 @@ void ComponentList::addComponent(Component *component)
 
 void ComponentList::mouseMoveEvent(QMouseEvent *event)
 {
-    if(!(event->buttons() & Qt::LeftButton))
-        return;
+    if (!(event->buttons() & Qt::LeftButton)) return;
 
-    if(!currentItem())
-        return;
+    if (!currentItem()) return;
 
     Component *component = _components.value(currentItem());
 
@@ -61,10 +59,8 @@ void ComponentList::mouseMoveEvent(QMouseEvent *event)
     QCursor copyCursor(Qt::OpenHandCursor);
     drag->setDragCursor(copyCursor.pixmap(), Qt::CopyAction);
 
-    // Ustawienie kursora dla akcji Move (konwersja Qt::CursorShape na QPixmap)
     QCursor moveCursor(Qt::ClosedHandCursor);
     drag->setDragCursor(moveCursor.pixmap(), Qt::MoveAction);
 
-    // Rozpoczęcie operacji przeciągania
     Qt::DropAction dropAction = drag->exec(Qt::CopyAction | Qt::MoveAction);
 }

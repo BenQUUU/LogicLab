@@ -21,8 +21,9 @@ SwitchItem::SwitchItem(Component *component) :
 void SwitchItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     const QRectF surface(5, 15, 40, 20);
-    if(surface.contains(event->pos())) {
-        if(_outputs[0]->getValue() == false) {
+
+    if (surface.contains(event->pos())) {
+        if (_outputs[0]->getValue() == false) {
             _outputs[0]->setValue(true);
         } else {
             _outputs[0]->setValue(false);
@@ -39,8 +40,7 @@ void SwitchItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     ComponentItem::mouseReleaseEvent(event);
 
-    if(!_mouseDown)
-        return;
+    if (!_mouseDown) return;
 
     _mouseDown = false;
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -66,8 +66,7 @@ void SwitchItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 Switch::Switch(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString Switch::category() const
 {

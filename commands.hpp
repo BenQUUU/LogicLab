@@ -15,8 +15,8 @@ public:
     void redo();
 
 private:
-    Scene *m_scene;
-    ComponentItem *m_item;
+    Scene *_scene;
+    ComponentItem *_item;
 };
 
 class DeleteCommand : public QUndoCommand
@@ -28,8 +28,8 @@ public:
     void redo();
 
 private:
-    Scene *m_scene;
-    QList<ComponentItem*> m_items;
+    Scene *_scene;
+    QList<ComponentItem*> _items;
 };
 
 class RotateCommand : public QUndoCommand
@@ -41,6 +41,6 @@ public:
     void redo();
 
 private:
-    QList<ComponentItem*> m_items;
-    double m_angle;
+    QList<ComponentItem*> _items;
+    double _angle;
 };

@@ -22,8 +22,7 @@ LogicalHighItem::LogicalHighItem(Component *component) :
 
 LogicalHigh::LogicalHigh(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString LogicalHigh::category() const
 {

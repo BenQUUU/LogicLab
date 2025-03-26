@@ -13,8 +13,7 @@ void ComponentDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opt
 {
     const QAbstractItemModel* model = index.model();
 
-    if(!model->parent(index).isValid())
-    {
+    if (!model->parent(index).isValid()) {
         QStyleOptionButton buttonOption;
 
         buttonOption.state = option.state;
@@ -32,15 +31,13 @@ void ComponentDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opt
         branchOption.palette = option.palette;
         branchOption.state = QStyle::State_Children;
 
-        if (_treeWidget->isExpanded(index))
-            branchOption.state |= QStyle::State_Open;
+        if (_treeWidget->isExpanded(index)) branchOption.state |= QStyle::State_Open;
 
         _treeWidget->style()->drawPrimitive(QStyle::PE_IndicatorBranch, &branchOption, painter, _treeWidget);
 
         QRect textrect = QRect(r.left() + i * 2, r.top(), r.width() - ((5*i)/2), r.height());
         QString originalText = index.model()->data(index, Qt::DisplayRole).toString();
 
-        // Elidacja tekstu (jeśli nie mieści się w rect)
         QString elidedText = option.fontMetrics.elidedText(originalText, Qt::ElideMiddle, option.rect.width());
         _treeWidget->style()->drawItemText(painter, textrect, Qt::AlignCenter, option.palette, _treeWidget->isEnabled(), elidedText);
     } else {
@@ -72,14 +69,14 @@ ComponentTree::~ComponentTree()
 void ComponentTree::addComponent(Component* component)
 {
     const QString componentName = component->metaObject()->className();
-    if(_components.contains(componentName))
-        return;
+    if (_components.contains(componentName)) return;
 
     _components.insert(componentName, component);
 
     const QString categoryName = component->category();
     QTreeWidgetItem *categoryItem = _categories.value(categoryName);
-    if(!categoryItem) {
+
+    if (!categoryItem) {
         categoryItem = new QTreeWidgetItem();
         categoryItem->setText(0, categoryName);
         addTopLevelItem(categoryItem);
@@ -90,18 +87,17 @@ void ComponentTree::addComponent(Component* component)
         QTreeWidgetItem *listItem = new QTreeWidgetItem(categoryItem);
         setItemWidget(listItem, 0, listWidget);
 
-        //setExpanded(categoryItem, true);
 
         _categories.insert(categoryName, categoryItem);
     }
 
     QTreeWidgetItem *childItem = categoryItem->child(0);
-    if(!childItem)
-        return;
+
+    if (!childItem) return;
 
     ComponentList *listWidget = qobject_cast<ComponentList*>(itemWidget(childItem, 0));
-    if(!listWidget)
-        return;
+
+    if (!listWidget) return;
 
     listWidget->addComponent(component);
 
@@ -138,20 +134,17 @@ void ComponentTree::resizeEvent(QResizeEvent *event)
 {
     QTreeWidget::resizeEvent(event);
 
-    for(int i = 0; i < topLevelItemCount(); ++i)
+    for (int i = 0; i < topLevelItemCount(); ++i)
         adjustListHeight(topLevelItem(i));
 }
 
 void ComponentTree::handleMousePress(QTreeWidgetItem *item)
 {
-    if(!(qApp->mouseButtons() & Qt::LeftButton))
-        return;
+    if (!(qApp->mouseButtons() & Qt::LeftButton)) return;
 
-    if(!item)
-        return;
+    if (!item) return;
 
-    if(item->parent())
-        return;
+    if (item->parent()) return;
 
     item->setExpanded(!item->isExpanded());
 }
@@ -168,10 +161,10 @@ void ComponentTree::setListMode()
 
 void ComponentTree::updateLists()
 {
-    for(int i = 0; i < topLevelItemCount(); ++i) {
+    for (int i = 0; i < topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = topLevelItem(i);
 
-        if(ComponentList *list = qobject_cast<ComponentList*>(itemWidget(item->child(0), 0))) {
+        if (ComponentList *list = qobject_cast<ComponentList*>(itemWidget(item->child(0), 0))) {
             list->setViewMode(_viewMode);
         }
 
@@ -184,10 +177,9 @@ void ComponentTree::updateLists()
 void ComponentTree::adjustListHeight(QTreeWidgetItem *item)
 {
     QTreeWidgetItem *childItem = item->child(0);
-    if(!childItem)
-        return;
+    if (!childItem) return;
 
-    if(ComponentList *listWidget = qobject_cast<ComponentList*>(itemWidget(childItem, 0))) {
+    if (ComponentList *listWidget = qobject_cast<ComponentList*>(itemWidget(childItem, 0))) {
         listWidget->doItemsLayout();
 
         const int height = qMax(listWidget->contentsSize().height() ,1);

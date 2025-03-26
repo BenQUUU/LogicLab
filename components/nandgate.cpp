@@ -40,8 +40,7 @@ void NandGateItem::updateOutputs()
 
 NandGate::NandGate(QObject* parent) :
     Component(parent)
-{
-}
+{ }
 
 QString NandGate::category() const
 {

@@ -18,13 +18,10 @@ InputPin::InputPin(ComponentItem *parent, double x, double y, int angle) :
 
 InputPin::~InputPin()
 {
-    if(!_wire)
-    {
-        return;
-    }
+    if (!_wire) return;
 
     delete _wire;
-    _wire = 0;
+    _wire = nullptr;
 }
 
 void InputPin::setWire(Wire *wire)
@@ -36,20 +33,14 @@ void InputPin::setWire(Wire *wire)
 
 void InputPin::updateWires()
 {
-    if(!_wire)
-    {
-        return;
-    }
+    if (!_wire) return;
 
     _wire->updatePath();
 }
 
 bool InputPin::value()
 {
-    if(!_wire)
-    {
-        return 0;
-    }
+    if (!_wire) return false;
 
     return _wire->getValue();
 }

@@ -42,8 +42,7 @@ void XorGateItem::updateOutputs()
 
 XorGate::XorGate(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString XorGate::category() const
 {

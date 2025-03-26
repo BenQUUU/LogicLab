@@ -45,11 +45,9 @@ RSFlipFlopItem::RSFlipFlopItem(Component *component) :
     notQLabel->setPos(45, 22);
     notQLabel->setDefaultTextColor(Qt::black);
 
-    // Dodanie pinów
     _inputs << new InputPin(this, -20, 10, 270);  // Set (S)
     _inputs << new InputPin(this, -20, 30, 270);  // Reset (R)
 
-    // Dodanie wyjść Q i ¬Q
     _outputs << new OutputPin(this, 80, 10, 90);  // Q
     _outputs << new OutputPin(this, 80, 30, 90);  // ¬Q
 
@@ -80,8 +78,7 @@ void RSFlipFlopItem::updateOutputs()
 
 RSFlipFlop::RSFlipFlop(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString RSFlipFlop::category() const
 {

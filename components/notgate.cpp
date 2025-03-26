@@ -38,8 +38,7 @@ void NotGateItem::updateOutputs()
 
 NotGate::NotGate(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString NotGate::category() const
 {

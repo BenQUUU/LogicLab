@@ -44,7 +44,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     const int num = one + two + four + eight;
 
     //top
-    if(segmentChars[num][0]) {
+    if (segmentChars[num][0]) {
         path.moveTo(2, 0);
         path.lineTo(33, 0);
         path.lineTo(25, 8);
@@ -53,7 +53,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //right up
-    if(segmentChars[num][1]) {
+    if (segmentChars[num][1]) {
         path.moveTo(35, 2);
         path.lineTo(27, 10);
         path.lineTo(27, 20);
@@ -63,7 +63,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //right bottom
-    if(segmentChars[num][2]) {
+    if (segmentChars[num][2]) {
         path.moveTo(35, 53);
         path.lineTo(27, 45);
         path.lineTo(27, 35);
@@ -73,7 +73,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //bottom
-    if(segmentChars[num][3]) {
+    if (segmentChars[num][3]) {
         path.moveTo(2, 55);
         path.lineTo(10, 47);
         path.lineTo(25, 47);
@@ -82,7 +82,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //left bottom
-    if(segmentChars[num][4]) {
+    if (segmentChars[num][4]) {
         path.moveTo(0, 53);
         path.lineTo(8, 45);
         path.lineTo(8, 35);
@@ -92,7 +92,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //left up
-    if(segmentChars[num][5]) {
+    if (segmentChars[num][5]) {
         path.moveTo(0, 2);
         path.lineTo(8, 10);
         path.lineTo(8, 20);
@@ -102,7 +102,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     }
 
     //middle
-    if(segmentChars[num][6]) {
+    if (segmentChars[num][6]) {
         path.moveTo(5, 27);
         path.lineTo(8, 24);
         path.lineTo(27, 24);
@@ -120,8 +120,7 @@ void DigitItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 Digit::Digit(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString Digit::category() const
 {

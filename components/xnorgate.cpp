@@ -44,8 +44,7 @@ void XnorGateItem::updateOutputs()
 
 XnorGate::XnorGate(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString XnorGate::category() const
 {

@@ -76,8 +76,7 @@ void SRFlipFlopItem::updateOutputs()
 
 SRFlipFlop::SRFlipFlop(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString SRFlipFlop::category() const
 {

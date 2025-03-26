@@ -20,10 +20,6 @@ ClockProperties::ClockProperties(ClockItem* timer, QWidget* parent) :
     _signalSpinBox->setMaximum(INT_MAX);
     _signalSpinBox->setSuffix(" ms");
 
-    // _repeatSpinBox->setMinimum(1);
-    // _repeatSpinBox->setMaximum(INT_MAX);
-    // _repeatSpinBox->setSuffix(" ms");
-
     _signalSpinBox->setValue(_timer->_signalTimer.interval());
     _repeatSpinBox->setValue(_timer->_repeatTimer.interval());
 
@@ -34,7 +30,6 @@ ClockProperties::ClockProperties(ClockItem* timer, QWidget* parent) :
 
     QFormLayout *layout = new QFormLayout(this);
     layout->addRow("Pulse every", _signalSpinBox);
-    //layout->addRow("Pulse lasts:", _repeatSpinBox);
     layout->addWidget(buttons);
     setLayout(layout);
 }

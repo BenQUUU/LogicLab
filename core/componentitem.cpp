@@ -22,13 +22,11 @@ QRectF ComponentItem::boundingRect() const
 {
     QRectF rect = QGraphicsPathItem::boundingRect();
 
-    for(InputPin* input : _inputs)
-    {
+    for (InputPin* input : _inputs) {
         rect |= input->boundingRect().translated(input->pos());
     }
 
-    for(OutputPin* output : _outputs)
-    {
+    for (OutputPin* output : _outputs) {
         rect |= output->boundingRect().translated(output->pos());
     }
 
@@ -37,14 +35,14 @@ QRectF ComponentItem::boundingRect() const
 
 QVariant ComponentItem::itemChange(GraphicsItemChange change, const QVariant &value)
 {
-    if((change == ItemPositionHasChanged) || (change == ItemRotationHasChanged) || (change == ItemScaleHasChanged)) {
-        foreach(InputPin *input, _inputs)
-        input->updateWires();
+    if ((change == ItemPositionHasChanged) || (change == ItemRotationHasChanged) || (change == ItemScaleHasChanged)) {
+        foreach (InputPin *input, _inputs)
+            input->updateWires();
 
-        foreach(OutputPin *output, _outputs)
+        foreach (OutputPin *output, _outputs)
             output->updateWires();
     } else if(change == QGraphicsItem::ItemSelectedChange) {
-        if(value.toBool()) {
+        if (value.toBool()) {
             QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
             effect->setOffset(0, 0);
             effect->setColor(QColor(130, 180, 10));
@@ -55,10 +53,10 @@ QVariant ComponentItem::itemChange(GraphicsItemChange change, const QVariant &va
         }
     }
 
-    if(change == ItemPositionChange) {
+    if (change == ItemPositionChange) {
         QPoint newPos = QGraphicsPathItem::itemChange(change, value).toPoint();
 
-        if(scene() && scene()->property("snapToGrid").toBool()) {
+        if (scene() && scene()->property("snapToGrid").toBool()) {
             const int gridSize = scene()->property("gridSize").toInt();
 
             newPos.setX(newPos.x() - (newPos.x() % gridSize));
@@ -89,7 +87,7 @@ QDataStream &operator<<(QDataStream &str, const ComponentItem &item)
     str << item.rotation();
     str << item.scale();
 
-    foreach(OutputPin *output, item._outputs) {
+    foreach (OutputPin *output, item._outputs) {
         str << output->getValue();
     }
 
@@ -110,7 +108,7 @@ QDataStream &operator>>(QDataStream &str, ComponentItem &item)
     str >> scale;
     item.setScale(scale);
 
-    foreach(OutputPin *output, item._outputs) {
+    foreach (OutputPin *output, item._outputs) {
         quint8 value;
         str >> value;
         output->setValue(value);

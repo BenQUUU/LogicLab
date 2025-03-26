@@ -40,8 +40,7 @@ void NorGateItem::updateOutputs()
 
 NorGate::NorGate(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString NorGate::category() const
 {

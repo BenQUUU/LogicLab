@@ -35,6 +35,7 @@ MultiplexerItem::MultiplexerItem(Component *component) : ComponentItem(component
 
     const QStringList labels {"D0", "D1", "D2", "D3"};
     constexpr int positions[] = { 10, 30, 50, 70 }; // Y positions for text items
+
     for (int i = 0; i < labels.size(); ++i) {
         QGraphicsTextItem *label = new QGraphicsTextItem(labels[i], this);
         label->setPos(0.5, positions[i]);

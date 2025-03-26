@@ -35,6 +35,7 @@ DemultiplexerItem::DemultiplexerItem(Component *component) : ComponentItem(compo
 
     const QStringList labels {"Q0", "Q1", "Q2", "Q3"};
     constexpr int positions[] = { 10, 30, 50, 70 }; // Y positions for text items
+
     for (int i = 0; i < labels.size(); ++i) {
         QGraphicsTextItem *label = new QGraphicsTextItem(labels[i], this);
         label->setPos(46, positions[i]);

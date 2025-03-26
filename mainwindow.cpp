@@ -67,18 +67,18 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete _scene;
-    _scene = 0;
+    _scene = nullptr;
 
     delete _mruMapper;
-    _mruMapper = 0;
+    _mruMapper = nullptr;
 
     delete _ui;
-    _ui = 0;
+    _ui = nullptr;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if(maybeSave()) {
+    if (maybeSave()) {
         event->accept();
         return;
     }
@@ -88,11 +88,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *e)
 {
-    if(obj == _ui->graphicsView) {
-        if(e->type() == QEvent::ContextMenu) {
+    if (obj == _ui->graphicsView) {
+        if (e->type() == QEvent::ContextMenu) {
             const QContextMenuEvent *event = dynamic_cast<QContextMenuEvent*>(e);
 
-            if(_scene->selectedComponents().count()) {
+            if (_scene->selectedComponents().count()) {
                 QMenu menu;
                 menu.addAction(_ui->cutAction);
                 menu.addAction(_ui->copyAction);
@@ -101,7 +101,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
                 menu.addSeparator();
                 menu.addMenu(_ui->rotateMenu);
 
-                if((_scene->selectedComponents().count() == 1) && _scene->selectedComponent()->hasProperties()) {
+                if ((_scene->selectedComponents().count() == 1) && _scene->selectedComponent()->hasProperties()) {
                     menu.addSeparator();
                     menu.addAction(_ui->propertiesAction);
                 }
@@ -116,8 +116,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e)
 
 void MainWindow::newFile()
 {
-    if(!maybeSave())
-        return;
+    if (!maybeSave()) return;
 
     _scene->clear();
     _scene->setModified(false);
@@ -127,19 +126,16 @@ void MainWindow::newFile()
 
 void MainWindow::open()
 {
-    if(!maybeSave())
-        return;
+    if (!maybeSave()) return;
 
     const QString fileName = QFileDialog::getOpenFileName(this);
-    if(!fileName.isEmpty())
-        loadFile(fileName);
+
+    if (!fileName.isEmpty()) loadFile(fileName);
 }
 
 bool MainWindow::save()
 {
-    if(_fileName.isEmpty()) {
-        return saveAs();
-    }
+    if (_fileName.isEmpty()) return saveAs();
 
     return saveFile(_fileName);
 }
@@ -147,15 +143,15 @@ bool MainWindow::save()
 bool MainWindow::saveAs()
 {
     const QString fileName = QFileDialog::getSaveFileName(this);
-    if(fileName.isEmpty())
-        return false;
+
+    if (fileName.isEmpty()) return false;
 
     return saveFile(fileName);
 }
 
 void MainWindow::about()
 {
-     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicLab v" + QString::fromUtf8(APP_VERSION) + "</b><br>Made by Michał Kolczak");
+     QMessageBox::about(0, tr("About LogicLab"), "<b>LogicLab v" + QString::fromUtf8(APP_VERSION));
 }
 
 void MainWindow::zoomIn()
@@ -203,7 +199,8 @@ void MainWindow::updateActions()
 void MainWindow::loadFile(const QString &fileName)
 {
     QFile file(fileName);
-    if(!file.open(QFile::ReadOnly)) {
+
+    if (!file.open(QFile::ReadOnly)) {
         QMessageBox::warning(this, tr("LogicLab"), tr("Cannot read file %1:\n%2.").arg(fileName).arg(file.errorString()));
         return;
     }
@@ -211,12 +208,12 @@ void MainWindow::loadFile(const QString &fileName)
     _scene->clear();
 
     QDataStream str(&file);
-    while(!str.atEnd()) {
+    while (!str.atEnd()) {
         QString className;
         str >> className;
 
         Component *component = _ui->treeWidget->component(className);
-        if(component) {
+        if (component) {
             ComponentItem *item = component->item();
             str >> *item;
 
@@ -233,14 +230,17 @@ void MainWindow::loadFile(const QString &fileName)
 bool MainWindow::saveFile(const QString &fileName)
 {
     QFile file(fileName);
-    if(!file.open(QFile::WriteOnly)) {
+
+    if (!file.open(QFile::WriteOnly)) {
         QMessageBox::warning(this, tr("LogicLab"), tr("Cannot write file %1:\n%2.").arg(fileName).arg(file.errorString()));
         return false;
     }
 
     QDataStream str(&file);
-    foreach(QGraphicsItem *item, _scene->items()) {
-        if(ComponentItem *componentItem = dynamic_cast<ComponentItem*>(item)) {
+
+    // TODO: Fix saving
+    foreach (QGraphicsItem *item, _scene->items()) {
+        if (ComponentItem *componentItem = dynamic_cast<ComponentItem*>(item)) {
             str << QString(componentItem->component()->metaObject()->className());
             str << *componentItem;
         }
@@ -255,9 +255,10 @@ bool MainWindow::saveFile(const QString &fileName)
 
 bool MainWindow::maybeSave()
 {
-    if(_scene->isModified()) {
+    if (_scene->isModified()) {
         const QMessageBox::StandardButton button = QMessageBox::warning(this, tr("LogicLab"), tr("This project has been modified.\nDo you want to save your changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-        if(button == QMessageBox::Save) {
+
+        if (button == QMessageBox::Save) {
             return save();
         } else if (button == QMessageBox::Cancel) {
             return false;
@@ -292,10 +293,6 @@ void MainWindow::createZoom()
     QToolButton *zoomOutButton = new QToolButton();
     zoomOutButton->setAutoRaise(true);
     zoomOutButton->setDefaultAction(_ui->zoomOutAction);
-
-    // _ui->statusBar->addPermanentWidget(zoomOutButton);
-    // _ui->statusBar->addPermanentWidget(_zoomSlider);
-    // _ui->statusBar->addPermanentWidget(zoomInButton);
 }
 
 void MainWindow::connectActions()

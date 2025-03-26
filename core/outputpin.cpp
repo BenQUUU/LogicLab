@@ -27,7 +27,7 @@ void OutputPin::removeWire(Wire *wire)
 
 void OutputPin::updateWires()
 {
-    for(Wire *wire : _wires)
+    for (Wire *wire : std::as_const(_wires))
     {
         wire->updatePath();
     }
@@ -35,10 +35,7 @@ void OutputPin::updateWires()
 
 void OutputPin::setValue(bool value)
 {
-    if(_value == value)
-    {
-        return;
-    }
+    if (_value == value) return;
 
     _value = value;
 

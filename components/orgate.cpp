@@ -38,8 +38,7 @@ void OrGateItem::updateOutputs()
 
 OrGate::OrGate(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString OrGate::category() const
 {

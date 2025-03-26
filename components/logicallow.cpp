@@ -22,8 +22,7 @@ LogicalLowItem::LogicalLowItem(Component *component) :
 
 LogicalLow::LogicalLow(QObject *parent) :
     Component(parent)
-{
-}
+{ }
 
 QString LogicalLow::category() const
 {

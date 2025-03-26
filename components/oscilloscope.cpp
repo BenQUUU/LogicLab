@@ -60,8 +60,7 @@ void OscilloscopeItem::updateData()
 
 Oscilloscope::Oscilloscope(QObject* parent) :
     Component(parent)
-{
-}
+{ }
 
 QString Oscilloscope::category() const
 {
